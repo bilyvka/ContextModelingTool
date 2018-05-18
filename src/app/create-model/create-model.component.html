@@ -1,0 +1,61 @@
+<div class="container margit-top-60">
+
+  <div class="row">
+
+       <!--Model creation form-->
+    <form  [formGroup]="modelForm" (ngSubmit)="onSubmit()" >
+
+      <!--Context Model Name-->
+      <div class="form-group">
+        <label class="center-block">Model Name</label>
+        <input placeholder="Name" type="text" class="form-control" formControlName="name"  required>
+        <!--<div  *ngIf="modelForm.get('name').hasError('required')"-->
+        <!--class="alert alert-danger">-->
+        <!--Model name is required-->
+        <!--</div>-->
+      </div>
+
+      <!--Database name-->
+
+      <div class="form-group">
+        <label class="center-block">Database Name</label>
+        <input placeholder="Database" type="text" class="form-control"  formControlName="db_name"  required>
+        <!--<div  *ngIf="modelForm.get('db_name').hasError('required')"-->
+        <!--class="alert alert-danger">-->
+        <!--Database name is required-->
+        <!--</div>-->
+      </div>
+
+
+      <!--Database user-->
+
+      <div class="form-group">
+        <label class="center-block">Database User</label>
+        <input placeholder="User" type="text" class="form-control"  formControlName="db_user"  required>
+        <!--<div  *ngIf="modelForm.get('db_name').hasError('required')"-->
+        <!--class="alert alert-danger">-->
+        <!--Database name is required-->
+        <!--</div>-->
+      </div>
+
+      <!--Database password-->
+
+      <div class="form-group">
+        <label class="center-block">Database Password</label>
+        <input type="password" class="form-control" formControlName="db_password" required data-eye>
+        <!--<div  *ngIf="modelForm.get('db_name').hasError('required')"-->
+        <!--class="alert alert-danger">-->
+        <!--Database name is required-->
+        <!--</div>-->
+      </div>
+
+      <button (click)="cancelSubmit()"  class="btn btn-danger btn-block">Cancel</button>
+      <button type="submit" class="btn btn-primary btn-block">Save</button>
+
+
+    </form>
+
+
+  </div>
+
+</div>

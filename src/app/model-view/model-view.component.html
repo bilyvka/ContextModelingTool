@@ -1,0 +1,47 @@
+<div class="container margit-top-60">
+  <!--Header-->
+  <div class="row">
+    <h2>{{contextModel.name}}</h2>
+  </div>
+
+  <div class="row">
+     <p>Send data to DataCollection Microservice in the following json structure:</p>
+     <section>
+       {{clientConfig}}
+     </section>
+  </div>
+
+
+  <div class="row">
+    <button (click)="sendTest()">Send test data</button>
+  </div>
+
+  <div class="row">
+    <div class='table-responsive'>
+      <table class='table' *ngIf='contextModel && contextModel.data_description.length'>
+        <thead>
+        <tr>
+          <th>Dimension name</th>
+          <th>Type</th>
+          <th>isArray</th>
+          <th>isMetadata</th>
+          <th>Weight</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor='let dimensions of contextModel.data_description'>
+          <td>{{dimensions.field_name}}</td>
+          <td>{{dimensions.type}}</td>
+          <td>{{dimensions.isArray}}</td>
+          <td>{{dimensions.isStatic}}</td>
+          <td>{{dimensions.weight}}</td>
+        </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+  </div>
+</div>

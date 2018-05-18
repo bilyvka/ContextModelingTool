@@ -1,0 +1,47 @@
+
+<div class="container">
+
+  <!--Header-->
+  <div class="row">
+      <h3>Context Models</h3>
+  </div>
+
+
+  <div class="row">
+
+      <a [routerLink]="['/create-model']" routerLinkActive="active">New Model</a>
+
+
+      <div class='table-responsive'>
+        <table class='table' *ngIf='context_models && context_models.length'>
+          <thead>
+          <tr>
+            <th>Actions</th>
+            <th>Model Name</th>
+            <th>Database Name</th>
+            <th>Amount of Data</th>
+            <th>Creation Date</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr *ngFor='let model of context_models'>
+            <td>
+              <a href="#" (click)="$event.preventDefault();viewModel(model._id)"><i class="fas fa-eye"></i></a>
+              <a href="#" (click)="$event.preventDefault();openModeling(model._id)" *ngIf="model.data_description.length<1"><i class="fas fa-edit"></i></a>
+              <a href="#" (click)="$event.preventDefault();deleteModel(model._id)"><i class="fas fa-trash-alt"></i></a>
+            </td>
+            <td>{{model.name}}</td>
+            <td>{{model.db_name}}</td>
+            <td>{{model.totalData}}</td>
+            <td>{{model.timestamp}}</td>
+          </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+  </div>
+</div>

@@ -1,0 +1,105 @@
+<div class="container margit-top-60">
+  <!--HEADER-->
+
+  <div class="row">
+     <h2>{{contextModel.name}} model</h2>
+  </div>
+
+
+  <div class="row">
+     <div class="col">
+
+        <form  [formGroup]="dimensionsForm" novalidate>
+
+              <!--Dimension Name-->
+              <div class="form-group">
+                <label>Dimension name</label>
+                <input placeholder="Name" type="text" class="form-control" formControlName="name"  required>
+                <!--<div  *ngIf="modelForm.get('data_description').get('name').hasError('required')"-->
+                      <!--class="alert alert-danger">-->
+                  <!--Dimension name is required-->
+                <!--</div>-->
+                <div class="alert" *ngIf="!dimensionsForm.controls['name'].valid && dimensionsForm.controls['name'].touched">Dimension name is required</div>
+              </div>
+
+
+              <!--Data type-->
+              <div class="form-group">
+                <label>Data type</label>
+                <select class="form-control" formControlName="data_type" required>
+                  <option *ngFor="let data_type of dataTypes" [value]="data_type.value">{{data_type.text}}</option>
+                </select>
+              </div>
+
+              <!--Categorical values-->
+              <div *ngIf="dimensionsForm.get('data_type').value==='categorical'" class="form-group">
+                <label>Provide comma separated categorical values if known
+                  <textarea formControlName="categorical_values"></textarea>
+                </label>
+
+              </div>
+
+
+            <!--Data structure -->
+            <div class="form-group">
+              <label>Data Structure</label>
+              <select class="form-control" formControlName="data_structure">
+                <option *ngFor="let data_structure of dataStructures" [value]="data_structure.value">{{data_structure.text}}</option>
+              </select>
+            </div>
+
+            <!--Is data is metadata (should not take part in calculation)-->
+            <div class="form-group">
+
+              <label class="center-block"><input type="radio" formControlName="isMetadata" value="true"> This dimension is metadata</label>
+
+            </div>
+
+            <!--Weight-->
+            <div class="form-group">
+                <label>Priority</label>
+                <input type="number" class="form-control" formControlName="weight"  required>
+                <!--<div  *ngIf="modelForm.get('data_description').get('name').hasError('required')"-->
+                <!--class="alert alert-danger">-->
+                <!--Dimension name is required-->
+                <!--</div>-->
+
+              <div class="alert" *ngIf="!dimensionsForm.controls['weight'].valid && dimensionsForm.controls['weight'].touched">Priority should be given as number.</div>
+
+            </div>
+
+
+
+          <button
+                [disabled]="!dimensionsForm.valid"   class="btn btn-success" (click)="addDimension()">Add</button>
+
+        </form>
+
+     </div>
+
+    <!--List of dimensions-->
+     <div class="col">
+       <section>
+         <h3>Dimensions</h3>
+         <button
+           class="btn btn-success" (click)="saveModel()">Save Configuration</button>
+
+         <span> {{response}} </span>
+
+         <ul class="list-group">
+           <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let dimension of contextModel.data_description">
+             {{ dimension.field_name }}
+             <a href="#" (click)="$event.preventDefault();deleteDimension(dimension.field_name)"><i class="fas fa-trash-alt"></i></a>
+           </li>
+
+
+
+         </ul>
+
+
+
+       </section>
+
+     </div>
+  </div>
+</div>

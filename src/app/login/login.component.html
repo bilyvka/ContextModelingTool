@@ -1,0 +1,77 @@
+
+<div class="container">
+  <div class="row">
+
+    <section class="h-100 login">
+      <div class="container h-100">
+        <div class="row justify-content-md-center h-100">
+          <div class="card-wrapper">
+            <div class="brand">
+              <!--<img src="img/logo.jpg">-->
+            </div>
+            <div class="card fat">
+              <div class="card-body">
+                <h4 class="card-title">Login</h4>
+                <form  novalidate (ngSubmit)="onSubmit()"  [formGroup]="loginForm">
+
+                  <div class="form-group" [ngClass]="{'has-danger': email.invalid && (email.dirty || email.touched),  'has-success': email.valid && (email.dirty || email.touched) }">
+                    <label>Email</label>
+                    <input type="email"
+                           class="form-control"
+                           formControlName="email"
+                           required>
+                    <div class="form-control-feedback"
+                         *ngIf="email.errors && (email.dirty || email.touched)">
+                      <p *ngIf="email.errors.required">Email is required</p>
+                      <p *ngIf="email.errors.pattern">The email address must contain at least the @ character</p>
+                    </div>
+
+                  </div>
+
+                  <div class="form-group" [ngClass]="{'has-danger': password.invalid && (password.dirty || password.touched), 'has-success': password.valid && (password.dirty || password.touched) }">
+                    <label>Password
+                      <a href="forgot.html" class="float-right">
+                        Forgot Password?
+                      </a>
+                    </label>
+                    <input type="password"
+                           class="form-control"
+                           formControlName="password"
+                           required data-eye>
+                    <div class="form-control-feedback"
+                         *ngIf="password.errors && (password.dirty || password.touched)">
+                      <p *ngIf="password.errors.required">Password is required</p>
+                      <p *ngIf="password.errors.minlength">Password must be 8 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}} characters </p>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label>
+                      <input type="checkbox" name="remember"> Remember Me
+                    </label>
+                  </div>
+
+                  <div class="form-group no-margin">
+                    <button type="submit" class="btn btn-primary btn-block">
+                      Login
+                    </button>
+                  </div>
+                  <div class="margin-top20 text-center">
+                    Don't have an account? <a [routerLink]="['/registration']" routerLinkActive="active">Create One</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="footer">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+
